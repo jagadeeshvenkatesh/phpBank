@@ -1,3 +1,9 @@
+<?php 
+require_once 'auth.php';
+if(isLoggedIn())
+  redirectAndExit('home.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,12 +46,41 @@
                 <input class="input" type="password" placeholder="Password" name="password" required>
                 <input type="submit" class="button is-success"></a>
               </form>
+              <br>
+              <a href="#content" id="showCreds" class="is-pulled-left has-text-primary">[show sample users]</a><br>
+              <div class="content">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Username</th>
+                      <th>Password</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>jeremy</td>
+                      <td>password</td>
+                    </tr>
+                    <tr>
+                      <td>vishhvak</td>
+                      <td>abc123</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script src="./jq.js"></script>
+  <script>
+    $("#showCreds").click(function(){
+    $(".content").show();
+    });
+  </script>
 
   </body>
 </html>

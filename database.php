@@ -9,6 +9,7 @@ if (is_readable($database) && filesize($database) > 0)
 {
     $error = 'Please delete the existing database manually before installing it afresh';
 }
+
 // Create an empty file for the database
 if (!$error)
 {
@@ -21,6 +22,7 @@ if (!$error)
         );
     }
 }
+
 // Grab the SQL commands we want to run on the database
 if (!$error)
 {
@@ -30,6 +32,7 @@ if (!$error)
         $error = 'Cannot find SQL file';
     }
 }
+
 // Connect to the new database and try to run the SQL commands
 if (!$error)
 {
@@ -40,6 +43,7 @@ if (!$error)
         $error = 'Could not run SQL: ' . print_r($pdo->errorInfo(), true);
     }
 }
+
 // See how many rows we created, if any
 $count = null;
 if (!$error)
@@ -52,6 +56,7 @@ if (!$error)
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>

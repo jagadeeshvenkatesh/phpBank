@@ -5609,3 +5609,12 @@ html, body {
 .box {
   box-shadow: none;
 }
+
+.logOut {
+  margin-top: .5rem;
+  margin-right: .5rem;
+}
+
+.content {
+  display: none;
+}

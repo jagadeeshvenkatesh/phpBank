@@ -4,18 +4,14 @@ require_once 'install.php';
 
 function tryLogin(PDO $pdo, $username, $password)
 {
-    $sql = "
-        SELECT
-            password
-        FROM
-            user
-        WHERE
-            username = :username
-    ";
+    $sql = "SELECT password FROM user WHERE username == :username";
     $stmt = $pdo->prepare($sql);
-    $realPassword = $stmt->execute(array('username' => $username, ));
-    if($realPassword==$password)
-    	return true;
+-   $stmt->execute(array('username' => $username, ));
+    $row=$stmt->fetch(PDO::FETCH_ASSOC);
+    if($row['password']==$password)
+    {
+        return true;
+    }
 }
 
 function login($username)
@@ -31,12 +27,8 @@ function isLoggedIn()
 
 function redirectAndExit($script)
 {
-    // Get the domain-relative URL (e.g. /blog/whatever.php or /whatever.php) and work
-    // out the folder (e.g. /blog/ or /).
     $relativeUrl = $_SERVER['PHP_SELF'];
     $urlFolder = substr($relativeUrl, 0, strrpos($relativeUrl, '/') + 1);
-
-    // Redirect to the full URL (http://myhost/blog/script.php)
     $host = $_SERVER['HTTP_HOST'];
     $fullUrl = 'http://'.$host.$urlFolder.$script;
     header('Location: '.$fullUrl);
@@ -55,6 +47,7 @@ if ($_POST)
         redirectAndExit('home.php');
     }
     else
+        $failed = true;
     	redirectAndExit('failed.php');
 }
 ?>
