@@ -45,16 +45,16 @@
 
       <div class="tabs is-centered">
         <ul>
-          <li class="is-active">
-            <a>
+          <li>
+            <a href="\">
               <span class="icon is-small"><i class="fa fa-image"></i></span>
-              <span><b>Overview</b></span>
+              <span>Overview</span>
             </a>
           </li>
-          <li>
+          <li class="is-active">
             <a href="/history.php">
               <span class="icon is-small"><i class="fa fa-music"></i></span>
-              <span>Full History</span>
+              <span><b>Full History</b></span>
             </a>
           </li>
           <li>
@@ -72,18 +72,14 @@
         </ul>
       </div>
 
-      <h1 class="title">Your balance:  ₹<?php echo $row['balance'] ?></h1>
-      <h2 class="subtitle">Branch: <?php echo $row['location'] ?></h2>
-
-      <h2 class="is-size-6 has-text-grey"><b>Your recent 5 transactions</b></h2>
+      <h1 class="title">Your full history</h1>
+      <h2 class="subtitle">All transactions are displayed here (chronological)</h2>
 
       <?php 
         $pdo = new PDO($dsn);
         $sql = "SELECT * FROM trans WHERE user == :username";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array('username' => $username, ));
-        $row=$stmt->fetchAll(PDO::FETCH_ASSOC);
-        $row=array_reverse($row)
       ?>
 
       <table class="table is-fullwidth is-striped">
@@ -96,14 +92,14 @@
         </thead>
 
         <?php  
-          for($count=0; $count<5; $count++)
+          while($row=$stmt->fetch(PDO::FETCH_ASSOC))
           {
         ?>
 
         <tr>
-          <th>₹<?php echo $row[$count]['amount'] ?></th>
-          <th><?php echo $row[$count]['mode'] ?></th>
-          <th><?php echo $row[$count]['transDate'] ?></th>
+          <th>₹<?php echo $row['amount'] ?></th>
+          <th><?php echo $row['mode'] ?></th>
+          <th><?php echo $row['transDate'] ?></th>
         </tr>
 
         <?php } ?>

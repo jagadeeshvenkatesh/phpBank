@@ -45,10 +45,10 @@
 
       <div class="tabs is-centered">
         <ul>
-          <li class="is-active">
-            <a>
+          <li>
+            <a href="\">
               <span class="icon is-small"><i class="fa fa-image"></i></span>
-              <span><b>Overview</b></span>
+              <span>Overview</span>
             </a>
           </li>
           <li>
@@ -63,52 +63,35 @@
               <span>Credit</span>
             </a>
           </li>
-          <li>
-            <a href="/debit.php">
+          <li class="is-active">
+            <a href="/withdraw.php">
               <span class="icon is-small"><i class="fa fa-file-text-o"></i></span>
-              <span>Withdraw</span>
+              <span><b>Withdraw</b></span>
             </a>
           </li>
         </ul>
       </div>
 
-      <h1 class="title">Your balance:  ₹<?php echo $row['balance'] ?></h1>
-      <h2 class="subtitle">Branch: <?php echo $row['location'] ?></h2>
+      <h1 class="title">Withdraw money</h1>
+      <h2 class="subtitle">Take how much ever you need :D</h2>
 
-      <h2 class="is-size-6 has-text-grey"><b>Your recent 5 transactions</b></h2>
-
-      <?php 
-        $pdo = new PDO($dsn);
-        $sql = "SELECT * FROM trans WHERE user == :username";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(array('username' => $username, ));
-        $row=$stmt->fetchAll(PDO::FETCH_ASSOC);
-        $row=array_reverse($row)
-      ?>
-
-      <table class="table is-fullwidth is-striped">
-        <thead>
-          <tr class="is-selected">
-            <th>Amount</th>
-            <th>Type of transaction</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-
-        <?php  
-          for($count=0; $count<5; $count++)
-          {
-        ?>
-
-        <tr>
-          <th>₹<?php echo $row[$count]['amount'] ?></th>
-          <th><?php echo $row[$count]['mode'] ?></th>
-          <th><?php echo $row[$count]['transDate'] ?></th>
-        </tr>
-
-        <?php } ?>
-
-      </table>
+      <form method="get" action="/debitProcess.php">
+        <div class="field has-addons">
+          <p class="control">
+            <span class="select is-medium">
+              <select>
+                <option selected>₹</option>
+              </select>
+            </span>
+          </p>
+          <p class="control">
+            <input class="input is-medium" type="text" placeholder="Amount of money" name="amount">
+          </p>
+          <p class="control">
+            <input type="submit" class="button is-medium is-success" value="Take away!">
+          </p>
+        </div>
+      </form>
 
     </div>
   </div>
@@ -119,7 +102,6 @@
       $(".button").addClass("is-loading");
     });
   </script>
- 
 
   </body>
 </html>

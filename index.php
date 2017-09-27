@@ -32,7 +32,7 @@ if(isLoggedIn())
     </div>
   </section>
 
-  <section class="hero is-light has-text-centered">
+  <section class="hero has-text-centered">
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
@@ -44,7 +44,7 @@ if(isLoggedIn())
               <form method="post" action="auth.php">
                 <input class="input" type="text" placeholder="Username" name="username" required>
                 <input class="input" type="password" placeholder="Password" name="password" required>
-                <input type="submit" class="button is-success"></a>
+                <input type="submit" class="button is-success login"></a>
               </form>
               <br>
               <a href="#content" id="showCreds" class="is-pulled-left has-text-primary">[show sample users]</a><br>
@@ -78,7 +78,10 @@ if(isLoggedIn())
   <script src="./jq.js"></script>
   <script>
     $("#showCreds").click(function(){
-    $(".content").show();
+      $(".content").show();
+    });
+    $(".button").click(function(){
+      $(".button").addClass("is-loading");
     });
   </script>
 

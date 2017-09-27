@@ -5594,8 +5594,6 @@ label.panel-block {
   padding: 3rem 1.5rem 6rem; }
 
 .input {
-  margin: 10px;
-  margin-left: 0;
   box-shadow: none;
   border-style: solid;
   border-width: 2px;
@@ -5603,7 +5601,6 @@ label.panel-block {
 
 html, body {
   min-height: 100%;
-  background: whitesmoke;
 }
 
 .box {
@@ -5617,4 +5614,9 @@ html, body {
 
 .content {
   display: none;
+}
+
+.tabs li.is-active a {
+    border-bottom-color: #23d160;
+    color: #23d160;
 }
