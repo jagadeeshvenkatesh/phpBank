@@ -42,8 +42,8 @@ if(isLoggedIn())
           <div class="column is-half is-offset-one-quarter">
             <div class="box">
               <form method="post" action="auth.php">
-                <input class="input" type="text" placeholder="Username" name="username" required>
-                <input class="input" type="password" placeholder="Password" name="password" required>
+                <input class="input isLogin" type="text" placeholder="Username" name="username" required>
+                <input class="input isLogin" type="password" placeholder="Password" name="password" required>
                 <input type="submit" class="button is-success login"></a>
               </form>
               <br>

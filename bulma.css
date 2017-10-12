@@ -5607,6 +5607,10 @@ html, body {
   box-shadow: none;
 }
 
+.isLogin {
+  margin: 10px;
+}
+
 .logOut {
   margin-top: .5rem;
   margin-right: .5rem;
